@@ -1,12 +1,22 @@
 import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { prisma } from "@/lib/prisma"
+import { createUserSchema } from "@household/shared/schemas/user"
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json()
+    const body = await req.json()
+    const parsed = createUserSchema.safeParse(body)
 
-    if (!email || !password) {
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid data" }, { status: 400 })
+    }
+
+    const {
+      data: { email, password },
+    } = parsed
+
+    if (!parsed.data.email || !parsed.data.password) {
       return NextResponse.json(
         { error: "Email and password are required" },
         { status: 400 }
