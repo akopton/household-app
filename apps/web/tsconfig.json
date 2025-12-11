@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@household/shared": ["../../packages/shared/src/index.ts"],
+      "@household/shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": [
