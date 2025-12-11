@@ -24,8 +24,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const messages = useMessages()
-  console.log(messages)
   return (
     <html lang="en">
       <body
