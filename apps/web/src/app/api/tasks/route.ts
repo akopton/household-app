@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { createTaskSchema } from "@household/shared/src/schemas/task"
+import { createTaskSchema } from "@household/shared/schemas/task"
 
 export async function GET() {
   const tasks = await prisma.task.findMany({
