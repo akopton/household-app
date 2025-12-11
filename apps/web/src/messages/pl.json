@@ -1,6 +1,30 @@
 {
   "home": {
-    "login": "Zaloguj się",
-    "register": "Zarejestruj się"
+    "title": "🏠 Household App",
+    "subtitle": "Zarządzaj domem w jednym miejscu.",
+    "login": {
+      "navigation": "Zaloguj",
+      "content": "Zaloguj się"
+    },
+    "register": {
+      "navigation": "Zarejestruj",
+      "content": "Utwórz konto"
+    },
+    "appFunctionalities": [
+      "✔ Zadania (wkrótce)",
+      "✔ Zarządzanie domem (wkrótce)",
+      "✔ Przypisywanie zadań (wkrótce)",
+      "✔ Planowanie posiłków (wkrótce)",
+      "✔ Planowanie budżetu (wkrótce)",
+      "✔ Powiadomienia (wkrótce)"
+    ],
+    "cardContent": {
+      "title": "✨ Jak to działa",
+      "list": [
+        "Stwórz dom",
+        "Zaproś członków",
+        "Organizuj zadania & harmonogramy"
+      ]
+    }
   }
 }

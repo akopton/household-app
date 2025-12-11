@@ -1,6 +1,30 @@
 {
   "home": {
-    "login": "Log in",
-    "register": "Register"
+    "title": "🏠 Household App",
+    "subtitle": "Manage your household effortlessly in one place.",
+    "login": {
+      "navigation": "Login",
+      "content": "Log in to your account"
+    },
+    "register": {
+      "navigation": "Register",
+      "content": "Create an account"
+    },
+    "appFunctionalities": [
+      "✔ Track tasks (soon)",
+      "✔ Manage households (soon)",
+      "✔ Assign chores (soon)",
+      "✔ Plan meals (soon)",
+      "✔ Budget planning (soon)",
+      "✔ Notifications (soon)"
+    ],
+    "cardContent": {
+      "title": "✨ How it works",
+      "list": [
+        "Create household",
+        "Invite members",
+        "Organize tasks & schedules"
+      ]
+    }
   }
 }
