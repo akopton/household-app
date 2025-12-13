@@ -26,5 +26,49 @@
         "Organize tasks & schedules"
       ]
     }
+  },
+
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Log in to your account",
+    "form": {
+      "user": "Email or username",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "login": "Log in",
+      "error": {
+        "user": "Email or username is required",
+        "password": "Password is required",
+        "root": "Invalid email or password"
+      },
+      "separator": "Or continue with",
+      "description": {
+        "text": "Don't have an account?",
+        "link": "Sign up"
+      }
+    }
+  },
+  "register": {
+    "title": "Create an account",
+    "subtitle": "Enter your email below to create an account",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "register": "Create an account"
+    },
+    "error": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is invalid",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must contain at least 8 characters",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordsDoNotMatch": "Passwords do not match"
+    },
+    "separator": "Or continue with",
+    "description": {
+      "text": "Already have an account?",
+      "link": "Sign in"
+    }
   }
 }
