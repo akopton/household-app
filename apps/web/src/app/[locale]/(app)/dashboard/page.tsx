@@ -1,14 +1,6 @@
 import { Card } from "@/components/ui/card"
-import { getCurrentUser } from "@/lib/auth"
-import { redirect } from "next/navigation"
 
-export default async function DashboardPage() {
-  const user = await getCurrentUser()
-
-  if (!user) {
-    redirect("/auth/login")
-  }
-
+export default function DashboardPage() {
   return (
     <div className="container mx-auto p-6">
       <Card></Card>
