@@ -1,109 +1,122 @@
 "use client"
 
-import { signIn } from "next-auth/react"
-import { useState, FormEvent } from "react"
-import { useRouter } from "next/navigation"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card"
+import { cn } from "@/lib/utils"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form"
+import { FieldDescription, FieldSeparator } from "../ui/field"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
+import { GoogleLoginButton } from "./google-login-button"
+import Link from "next/link"
+import { useLoginForm } from "@/hooks/use-login-form"
+import { useTranslations } from "next-intl"
 
-export default function LoginForm() {
-  const router = useRouter()
-  const [identifier, setIdentifier] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setError("")
-    setIsLoading(true)
-
-    try {
-      const result = await signIn("credentials", {
-        identifier,
-        password,
-        redirect: false,
-      })
-
-      if (result?.error) {
-        setError(result.error)
-      } else if (result?.ok) {
-        router.push("/dashboard")
-        router.refresh()
-      }
-    } catch (err) {
-      setError("An unexpected error occurred")
-    } finally {
-      setIsLoading(false)
-    }
-  }
+export const LoginForm = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  const t = useTranslations("login")
+  const { form, onSubmit } = useLoginForm()
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Login</h2>
-
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4"
-      >
-        {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
-            {error}
-          </div>
-        )}
-
-        <div>
-          <label
-            htmlFor="identifier"
-            className="block text-sm font-medium mb-2"
-          >
-            Email or Username
-          </label>
-          <input
-            id="identifier"
-            type="text"
-            value={identifier}
-            onChange={(e) => setIdentifier(e.target.value)}
-            placeholder="email@example.com or username"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium mb-2"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        >
-          {isLoading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-
-      <p className="mt-4 text-center text-sm text-gray-600">
-        Dont have an account?{" "}
-        <a
-          href="/auth/register"
-          className="text-blue-600 hover:underline"
-        >
-          Register
-        </a>
-      </p>
+    <div
+      className={cn(
+        "flex flex-col gap-10 h-screen items-center justify-center",
+        className
+      )}
+      {...props}
+    >
+      <Card className="px-5 w-md py-10">
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">{t("title")}</CardTitle>
+          <CardDescription>{t("subtitle")}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-10">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 flex flex-col"
+            >
+              <FormField
+                control={form.control}
+                name="user"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("form.user")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="example@example.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage>
+                      {form.formState.errors.user && t("form.error.user")}
+                    </FormMessage>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center justify-between">
+                      <FormLabel>{t("form.password")}</FormLabel>
+                      <FormLabel>
+                        <Link href="/auth/forgot-password">
+                          {t("form.forgotPassword")}
+                        </Link>
+                      </FormLabel>
+                    </div>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage>
+                      {form.formState.errors.password &&
+                        t("form.error.password")}
+                    </FormMessage>
+                  </FormItem>
+                )}
+              />
+              {form.formState.errors.root && (
+                <div className="text-destructive text-sm text-center p-3 bg-destructive/10 rounded-md">
+                  {form.formState.errors.root.message}
+                </div>
+              )}
+              <Button
+                style={{
+                  cursor: "pointer",
+                }}
+                type="submit"
+              >
+                {t("form.login")}
+              </Button>
+            </form>
+          </Form>
+          <FieldSeparator>{t("separator")}</FieldSeparator>
+          <GoogleLoginButton />
+        </CardContent>
+      </Card>
+      <FieldDescription className="px-6 text-center flex items-center gap-1">
+        {t("description.text")}
+        <Link href="/auth/register">{t("description.link")}</Link>
+      </FieldDescription>
     </div>
   )
 }
