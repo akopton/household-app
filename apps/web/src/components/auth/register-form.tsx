@@ -1,162 +1,159 @@
 "use client"
 
-import { signIn } from "next-auth/react"
-import { useState, FormEvent } from "react"
-import { useRouter } from "next/navigation"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card"
+import { useTranslations } from "next-intl"
+import { GoogleLoginButton } from "./google-login-button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
+import { cn } from "@/lib/utils"
+import { FieldDescription, FieldSeparator } from "../ui/field"
+import { useRegisterForm } from "@/hooks/use-register-form"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { useState } from "react"
+import Link from "next/link"
 
-export default function RegisterForm() {
-  const router = useRouter()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+type RegisterFormProps = {
+  className?: string
+} & React.HTMLAttributes<HTMLDivElement>
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setError("")
+export const RegisterForm = ({ className, ...props }: RegisterFormProps) => {
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-    // Validate passwords match
-    if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      return
-    }
-
-    // Validate password length
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters long")
-      return
-    }
-
-    setIsLoading(true)
-
-    try {
-      // Register user
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        setError(data.error || "Registration failed")
-        setIsLoading(false)
-        return
-      }
-
-      // Auto-login after successful registration
-      const signInResult = await signIn("credentials", {
-        identifier: email,
-        password,
-        callbackUrl: "/dashboard",
-      })
-
-      if (signInResult?.error) {
-        setError(
-          "Registration successful, but login failed. Please try logging in."
-        )
-        setIsLoading(false)
-      } else if (signInResult?.ok) {
-        router.push("/dashboard")
-        router.refresh()
-      }
-    } catch (err) {
-      setError("An unexpected error occurred")
-      setIsLoading(false)
-    }
-  }
+  const t = useTranslations("register")
+  const { form, onSubmit } = useRegisterForm()
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Create Account</h2>
+    <div
+      className={cn(
+        "flex flex-col gap-10 h-screen items-center justify-center",
+        className
+      )}
+      {...props}
+    >
+      <Card className="px-5 w-md py-10">
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">{t("title")}</CardTitle>
+          <CardDescription>{t("subtitle")}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-10">
+          <Form {...form}>
+            <form
+              autoComplete="off"
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 flex flex-col"
+            >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("form.email")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        autoComplete="email"
+                        placeholder="example@example.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("form.password")}</FormLabel>
+                    <FormControl>
+                      <div className="flex relative">
+                        <Input
+                          autoComplete="new-password"
+                          type={showPassword ? "text" : "password"}
+                          {...field}
+                        />
+                        <Button
+                          onClick={() => setShowPassword((prev) => !prev)}
+                          type="button"
+                          style={{
+                            height: "fit-content",
+                            padding: 0,
+                            cursor: "pointer",
+                          }}
+                          variant="ghost"
+                          className="absolute right-2 top-1/2 -translate-y-1/2"
+                        >
+                          {showPassword ? <FaEye /> : <FaEyeSlash />}
+                        </Button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("form.confirmPassword")}</FormLabel>
+                    <FormControl>
+                      <div className="flex relative">
+                        <Input
+                          autoComplete="new-password"
+                          type={showConfirmPassword ? "text" : "password"}
+                          {...field}
+                        />
+                        <Button
+                          type="button"
+                          onClick={() =>
+                            setShowConfirmPassword((prev) => !prev)
+                          }
+                          style={{
+                            height: "fit-content",
+                            padding: 0,
+                            cursor: "pointer",
+                          }}
+                          variant="ghost"
+                          className="absolute right-2 top-1/2 -translate-y-1/2"
+                        >
+                          {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                        </Button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">{t("form.register")}</Button>
+            </form>
+          </Form>
+          <FieldSeparator>{t("separator")}</FieldSeparator>
+          <GoogleLoginButton />
+        </CardContent>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4"
-      >
-        {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
-            {error}
-          </div>
-        )}
-
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium mb-2"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email@example.com"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium mb-2"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-            minLength={8}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-          <p className="mt-1 text-xs text-gray-500">Minimum 8 characters</p>
-        </div>
-
-        <div>
-          <label
-            htmlFor="confirmPassword"
-            className="block text-sm font-medium mb-2"
-          >
-            Confirm Password
-          </label>
-          <input
-            id="confirmPassword"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-            minLength={8}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        >
-          {isLoading ? "Creating account..." : "Create Account"}
-        </button>
-      </form>
-
-      <p className="mt-4 text-center text-sm text-gray-600">
-        Already have an account?{" "}
-        <a
-          href="/auth/signin"
-          className="text-blue-600 hover:underline"
-        >
-          Login
-        </a>
-      </p>
+        <CardFooter></CardFooter>
+      </Card>
+      <FieldDescription className="flex gap-1">
+        {t("description.text")}
+        <Link href="/auth/login">{t("description.link")}</Link>
+      </FieldDescription>
     </div>
   )
 }
