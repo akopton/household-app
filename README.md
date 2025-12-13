@@ -61,13 +61,12 @@ household-app/
 ### UI Components
 
 - [x] Registration form
-- [x] Login form (planned)
-- [x] Dashboard page
+- [x] Login form
 - [x] Profile settings (planned)
 
 ## 🚧 In Progress
 
-- [ ] Login page UI
+- [x] Login page UI
 - [ ] Profile settings page
 - [ ] Dashboard layout and navigation
 
@@ -194,27 +193,6 @@ GOOGLE_CLIENT_SECRET=""
 1. **Registration**: Email + Password → Hash → Create User → Auto-login
 2. **Login**: Email/Username + Password → Verify → JWT Session
 3. **Profile Update**: Set username/name → Validate → Update DB
-
-## 📈 Development Progress
-
-### Sprint 1 (Completed)
-
-- ✅ Project setup and configuration
-- ✅ Database schema design
-- ✅ Authentication system implementation
-- ✅ Basic user registration and login
-
-### Sprint 2 (Current)
-
-- 🔄 Complete authentication UI
-- 🔄 Dashboard layout
-- 🔄 Profile management
-
-### Sprint 3 (Planned)
-
-- Household creation and management
-- Member invitation system
-- Basic task CRUD operations
 
 ## 🧪 Testing
 
