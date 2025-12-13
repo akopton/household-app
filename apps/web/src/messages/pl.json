@@ -26,5 +26,48 @@
         "Organizuj zadania & harmonogramy"
       ]
     }
+  },
+  "login": {
+    "title": "Zaloguj się",
+    "subtitle": "Zaloguj się do swojego konta",
+    "form": {
+      "user": "Email lub nazwa użytkownika",
+      "password": "Hasło",
+      "login": "Zaloguj się",
+      "error": {
+        "user": "Email lub nazwa użytkownika jest wymagana",
+        "password": "Hasło jest wymagane",
+        "root": "Hasło lub nazwa użytkownika jest nieprawidłowe"
+      },
+      "forgotPassword": "Zapomniałeś hasła?"
+    },
+    "separator": "Lub kontynuuj z",
+    "description": {
+      "text": "Nie masz konta?",
+      "link": "Zarejestruj się"
+    }
+  },
+  "register": {
+    "title": "Stwórz konto",
+    "subtitle": "Podaj adres email poniżej żeby utworzyć konto",
+    "form": {
+      "email": "Email",
+      "password": "Hasło",
+      "confirmPassword": "Potwierdź hasło",
+      "register": "Zarejestruj się"
+    },
+    "error": {
+      "emailRequired": "Email jest wymagany",
+      "emailInvalid": "Email jest nieprawidłowy",
+      "passwordRequired": "Hasło jest wymagane",
+      "passwordMinLength": "Hasło musi zawierać co najmniej 8 znaków",
+      "confirmPasswordRequired": "Hasło jest wymagane",
+      "passwordsDoNotMatch": "Hasła nie są zgodne"
+    },
+    "separator": "Lub kontynuuj z",
+    "description": {
+      "text": "Masz już konto?",
+      "link": "Zaloguj się"
+    }
   }
 }
