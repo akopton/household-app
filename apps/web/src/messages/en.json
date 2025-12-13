@@ -40,12 +40,12 @@
         "user": "Email or username is required",
         "password": "Password is required",
         "root": "Invalid email or password"
-      },
-      "separator": "Or continue with",
-      "description": {
-        "text": "Don't have an account?",
-        "link": "Sign up"
       }
+    },
+    "separator": "Or continue with",
+    "description": {
+      "text": "Don't have an account?",
+      "link": "Sign up"
     }
   },
   "register": {
