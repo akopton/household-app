@@ -54,7 +54,8 @@ export async function PATCH(req: NextRequest) {
         id: true,
         email: true,
         username: true,
-        name: true,
+        firstName: true,
+        lastName: true,
         updatedAt: true,
       },
     })
