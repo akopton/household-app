@@ -1,14 +1,15 @@
 import { AppSidebar } from "@/components/layout/app-sidebar"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SiteHeader } from "@/components/layout/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex-1 p-6">
-        <SidebarTrigger />
+      <SidebarInset>
+        <SiteHeader />
         {children}
-      </main>
+      </SidebarInset>
     </SidebarProvider>
   )
 }
