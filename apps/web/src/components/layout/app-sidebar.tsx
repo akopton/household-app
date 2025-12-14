@@ -5,23 +5,46 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "../ui/sidebar"
-import Link from "next/link"
+import { useSession } from "next-auth/react"
+import { SidebarUser } from "./sidebar-user"
+import { HouseholdSwitcher } from "./household-switcher"
 
 export const AppSidebar = () => {
+  const { data } = useSession()
+
   return (
-    <Sidebar>
-      <SidebarHeader>household maybe?</SidebarHeader>
-      <SidebarContent>
+    <Sidebar variant="inset">
+      <SidebarHeader className="p-4">
+        <HouseholdSwitcher />
+      </SidebarHeader>
+      <SidebarContent className="p-4">
         <SidebarGroup>
-          <SidebarMenuItem>
-            <Link href="/">Home</Link>
-          </SidebarMenuItem>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <a href={"/"}>
+                    <span>test</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>user</SidebarFooter>
+      <SidebarFooter className="p-4">
+        <SidebarUser user={{ ...data?.user, avatarUrl: "" }} />
+      </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }
