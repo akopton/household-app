@@ -1,13 +1,12 @@
-import { Card } from "@/components/ui/card"
-
-export default function DashboardPage() {
+export default async function DashboardPage() {
   return (
-    <div className="container mx-auto p-6">
-      <Card></Card>
-
-      <div className="grid grid-cols-2 grid-rows-1">
-        <Card></Card>
-        <Card></Card>
+    <div>
+      <div className="flex flex-1 flex-col">
+        <div className="@container/main flex flex-1 flex-col gap-2">
+          <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+            <div className="px-4 lg:px-6">dashboard</div>
+          </div>
+        </div>
       </div>
     </div>
   )

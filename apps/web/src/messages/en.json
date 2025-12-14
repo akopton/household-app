@@ -1,4 +1,7 @@
 {
+  "appHeader": {
+    "greeting": "Hello"
+  },
   "home": {
     "title": "🏠 Household App",
     "subtitle": "Manage your household effortlessly in one place.",
