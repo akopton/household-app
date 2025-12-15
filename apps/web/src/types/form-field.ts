@@ -3,4 +3,5 @@ export type TFormField = {
   label: string
   type: string
   description?: string
+  value?: unknown
 }
