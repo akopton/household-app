@@ -51,6 +51,7 @@ export const authOptions: NextAuthOptions = {
             firstName: user.firstName,
             lastName: user.lastName,
             username: user.username,
+            avatarUrl: user.avatarUrl,
           }
         } catch (error) {
           console.error("Authentication error:", error)
@@ -75,6 +76,7 @@ export const authOptions: NextAuthOptions = {
         token.firstName = user.firstName
         token.lastName = user.lastName
         token.username = user.username
+        token.avatarUrl = user.avatarUrl
       }
       return token
     },
@@ -85,6 +87,7 @@ export const authOptions: NextAuthOptions = {
         session.user.firstName = token.firstName
         session.user.lastName = token.lastName
         session.user.username = token.username
+        session.user.avatarUrl = token.avatarUrl
       }
       return session
     },

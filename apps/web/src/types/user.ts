@@ -4,5 +4,5 @@ export type TUser = {
   username?: string | null
   firstName?: string | null
   lastName?: string | null
-  avatarUrl?: string
+  avatarUrl?: string | null
 }

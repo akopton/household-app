@@ -60,7 +60,8 @@ export async function POST(req: NextRequest) {
         id: true,
         email: true,
         username: true,
-        name: true,
+        firstName: true,
+        lastName: true,
         createdAt: true,
       },
     })
