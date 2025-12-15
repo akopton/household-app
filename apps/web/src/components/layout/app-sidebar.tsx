@@ -13,13 +13,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "../ui/sidebar"
-import { useSession } from "next-auth/react"
 import { SidebarUser } from "./sidebar-user"
 import { HouseholdSwitcher } from "./household-switcher"
+import { TUser } from "@/types/user"
 
-export const AppSidebar = () => {
-  const { data } = useSession()
-
+export const AppSidebar = ({ user }: { user?: TUser }) => {
   return (
     <Sidebar variant="inset">
       <SidebarHeader className="p-4">
@@ -42,7 +40,7 @@ export const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="p-4">
-        <SidebarUser user={{ ...data?.user, avatarUrl: "" }} />
+        <SidebarUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

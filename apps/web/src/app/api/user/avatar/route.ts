@@ -1,12 +1,12 @@
-import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { uploadUserAvatar } from "../../../../../../../packages/storage/src/upload/upload-user-avatar"
+import { getCurrentUser } from "@/lib/auth"
 
 export const POST = async (req: NextRequest) => {
-  const session = await getServerSession()
-  console.log(session)
-  if (!session?.user.id) {
+  const user = await getCurrentUser()
+
+  if (!user?.id) {
     return NextResponse.json("Unauthorized", { status: 401 })
   }
 
@@ -18,10 +18,10 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json("No file uploaded", { status: 400 })
   }
 
-  const avatarUrl = await uploadUserAvatar(session.user.id, file)
+  const avatarUrl = await uploadUserAvatar(user.id, file)
 
   await prisma.user.update({
-    where: { id: session.user.id },
+    where: { id: user.id },
     data: { avatarUrl },
   })
 
@@ -29,15 +29,15 @@ export const POST = async (req: NextRequest) => {
 }
 
 export async function GET() {
-  const session = await getServerSession()
+  const user = await getCurrentUser()
 
-  if (!session?.user.id) {
+  if (!user?.id) {
     return NextResponse.json("Unauthorized", { status: 401 })
   }
 
   const data = await prisma.user.findFirst({
     where: {
-      id: session.user.id,
+      id: user.id,
     },
     select: {
       avatarUrl: true,
