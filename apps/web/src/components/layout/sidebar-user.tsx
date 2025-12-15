@@ -22,9 +22,11 @@ import { useRouter } from "next/navigation"
 import { UserAvatar } from "../user-profile/user-avatar"
 import { UserDetails } from "../user-profile/user-details"
 
-export const SidebarUser = ({ user }: { user: TUser }) => {
+export const SidebarUser = ({ user }: { user?: TUser }) => {
   const router = useRouter()
   const { isMobile } = useSidebar()
+  const alt = `${user?.firstName}-${user?.lastName}`
+  const fallback = `${user?.firstName?.[0]}${user?.lastName?.[0]}`
 
   return (
     <SidebarMenu>
@@ -35,7 +37,11 @@ export const SidebarUser = ({ user }: { user: TUser }) => {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
             >
-              <UserAvatar user={user} />
+              <UserAvatar
+                url={user?.avatarUrl || ""}
+                alt={alt}
+                fallback={fallback}
+              />
               <UserDetails user={user} />
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -48,7 +54,12 @@ export const SidebarUser = ({ user }: { user: TUser }) => {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <UserAvatar user={user} />
+                <UserAvatar
+                  url={user?.avatarUrl || ""}
+                  alt={alt}
+                  fallback={fallback}
+                  editable={false}
+                />
                 <UserDetails user={user} />
               </div>
             </DropdownMenuLabel>
@@ -69,7 +80,7 @@ export const SidebarUser = ({ user }: { user: TUser }) => {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: "/" })}
               className="cursor-pointer"
             >
               <LogOut />
