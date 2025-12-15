@@ -1,7 +1,7 @@
 "use client"
 
-import { SidebarTrigger } from "../ui/sidebar"
-import { Separator } from "../ui/separator"
+import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Separator } from "@/components/ui/separator"
 import { useLocale, useTranslations } from "next-intl"
 import { useSession } from "next-auth/react"
 

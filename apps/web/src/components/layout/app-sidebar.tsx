@@ -12,9 +12,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "../ui/sidebar"
-import { SidebarUser } from "./sidebar-user"
-import { HouseholdSwitcher } from "./household-switcher"
+} from "@/components/ui/sidebar"
+import { SidebarUser } from "@/components/layout/sidebar-user"
+import { HouseholdSwitcher } from "@/components/layout/household-switcher"
 import { TUser } from "@/types/user"
 
 export const AppSidebar = ({ user }: { user?: TUser }) => {

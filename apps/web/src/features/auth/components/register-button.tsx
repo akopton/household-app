@@ -1,21 +1,20 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "../ui/button"
+import { Button } from "../../../components/ui/button"
 import { HtmlHTMLAttributes } from "react"
 
-type LoginButtonProps = {
+type RegisterButtonProps = {
   children: React.ReactNode
 } & HtmlHTMLAttributes<HTMLButtonElement>
 
-export const LoginButton = ({ children, ...props }: LoginButtonProps) => {
+export const RegisterButton = ({ children, ...props }: RegisterButtonProps) => {
   return (
     <Button
       asChild
       {...props}
-      variant="outline"
     >
-      <Link href="/auth/login">{children}</Link>
+      <Link href="/auth/register">{children}</Link>
     </Button>
   )
 }

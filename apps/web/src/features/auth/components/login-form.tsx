@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card"
+} from "../../../components/ui/card"
 import { cn } from "@/lib/utils"
 import {
   Form,
@@ -15,13 +15,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form"
-import { FieldDescription, FieldSeparator } from "../ui/field"
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
+} from "../../../components/ui/form"
+import { FieldDescription, FieldSeparator } from "../../../components/ui/field"
+import { Input } from "../../../components/ui/input"
+import { Button } from "../../../components/ui/button"
 import { GoogleLoginButton } from "./google-login-button"
 import Link from "next/link"
-import { useLoginForm } from "@/hooks/use-login-form"
+import { useLoginForm } from "@/features/auth/hooks/use-login-form"
 import { useTranslations } from "next-intl"
 
 export const LoginForm = ({

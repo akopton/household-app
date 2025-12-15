@@ -1,5 +1,5 @@
-import { LoginButton } from "@/components/auth/login-button"
-import { RegisterButton } from "@/components/auth/register-button"
+import { LoginButton } from "@/features/auth"
+import { RegisterButton } from "@/features/auth"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useTranslations } from "next-intl"
 

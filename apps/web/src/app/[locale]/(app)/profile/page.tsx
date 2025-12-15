@@ -1,7 +1,10 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { ChangePasswordForm } from "@/components/user-profile/change-password-form"
-import { UserAvatar } from "@/components/user-profile/user-avatar"
-import { UserDetailsCard } from "@/components/user-profile/user-details-card"
+import { Grid } from "@/components/ui/grid"
+import {
+  ChangePasswordForm,
+  UserAvatar,
+  UserDetailsCard,
+} from "@/features/profile"
 import { getCurrentUser } from "@/lib/auth"
 
 export default async function Profile() {
@@ -11,7 +14,11 @@ export default async function Profile() {
     <div className="@container/main flex flex-1 flex-col gap-2 h-full">
       <div className="h-full py-4 md:py-6">
         <div className="px-4 lg:px-6 gap-10 flex flex-col h-full">
-          <div className="grid grid-cols-3 grid-rows-4 gap-5 h-full min-h-0">
+          <Grid
+            columns={3}
+            rows={4}
+            gap={5}
+          >
             <Card className="row-span-3 flex flex-col gap-2">
               <CardHeader>
                 <h1 className="text-2xl font-bold">Profile</h1>
@@ -50,7 +57,7 @@ export default async function Profile() {
                 <ChangePasswordForm />
               </CardContent>
             </Card>
-          </div>
+          </Grid>
         </div>
       </div>
     </div>

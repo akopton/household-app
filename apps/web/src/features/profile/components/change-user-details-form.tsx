@@ -9,9 +9,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
+} from "@/components/ui/form"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { TFormField } from "@/types/form-field"
 import { TUser } from "@/types/user"
 

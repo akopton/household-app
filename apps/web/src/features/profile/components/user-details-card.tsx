@@ -2,7 +2,7 @@
 
 import { TUser } from "@/types/user"
 import { Edit } from "lucide-react"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { ChangeUserDetailsForm } from "./change-user-details-form"
 
