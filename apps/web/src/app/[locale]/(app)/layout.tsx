@@ -1,7 +1,7 @@
-import { AppSidebar } from "@/components/layout/app-sidebar"
-import { SiteHeader } from "@/components/layout/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { getCurrentUser } from "@/lib/auth"
+import { AppSidebar } from "@components/layout/app-sidebar"
+import { SiteHeader } from "@components/layout/site-header"
+import { SidebarInset, SidebarProvider } from "@components/ui/sidebar"
+import { getCurrentUser } from "@lib/auth"
 
 export default async function AppLayout({
   children,

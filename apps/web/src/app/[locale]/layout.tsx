@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import SessionProvider from "@/providers/session-provider"
+import SessionProvider from "@providers/session-provider"
 import "../globals.css"
 import { NextIntlClientProvider } from "next-intl"
 import { ThemeProvider } from "next-themes"

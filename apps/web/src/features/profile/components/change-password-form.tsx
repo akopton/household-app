@@ -8,16 +8,12 @@ import {
   FormControl,
   Form,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+} from "@components/ui/form"
+import { Input } from "@components/ui/input"
+import { Button } from "@components/ui/button"
 import { Info } from "lucide-react"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { TFormField } from "@/types/form-field"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@components/ui/tooltip"
+import { TFormField } from "@app-types/form-field"
 
 export const ChangePasswordForm = () => {
   const form = useForm()

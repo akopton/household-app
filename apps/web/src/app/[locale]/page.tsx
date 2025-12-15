@@ -1,6 +1,6 @@
-import { LoginButton } from "@/features/auth"
-import { RegisterButton } from "@/features/auth"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { LoginButton } from "@features/auth"
+import { RegisterButton } from "@features/auth"
+import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card"
 import { useTranslations } from "next-intl"
 
 export default function Home() {

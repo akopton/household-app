@@ -5,14 +5,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
+} from "@components/ui/dropdown-menu"
 import { ChevronsUpDown, House, Plus } from "lucide-react"
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@components/ui/sidebar"
 
 export const HouseholdSwitcher = () => {
   const { isMobile } = useSidebar()

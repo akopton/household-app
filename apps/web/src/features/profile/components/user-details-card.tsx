@@ -1,10 +1,10 @@
 "use client"
 
-import { TUser } from "@/types/user"
+import { TUser } from "@app-types/user"
 import { Edit } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@components/ui/button"
 import { useState } from "react"
-import { ChangeUserDetailsForm } from "./change-user-details-form"
+import { ChangeUserDetailsForm } from "@features/profile"
 
 export const UserDetailsCard = ({ user }: { user?: TUser | null }) => {
   const [isEditing, setIsEditing] = useState(false)

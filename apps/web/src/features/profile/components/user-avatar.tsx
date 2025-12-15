@@ -1,11 +1,11 @@
 "use client"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@lib/utils"
 import { ClassValue } from "clsx"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar"
 import { Plus } from "lucide-react"
 import { useEffect, useState } from "react"
-import { Input } from "@/components/ui/input"
+import { Input } from "@components/ui/input"
 
 export const UserAvatar = ({
   url,

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
-import { uploadUserAvatar } from "../../../../../../../packages/storage/src/upload/upload-user-avatar"
-import { getCurrentUser } from "@/lib/auth"
+import { prisma } from "@lib/prisma"
+import { uploadUserAvatar } from "@household/storage"
+import { getCurrentUser } from "@lib/auth"
 
 export const POST = async (req: NextRequest) => {
   const user = await getCurrentUser()
