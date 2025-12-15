@@ -15,7 +15,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.25.0",
   "dependencies": {
-    "@supabase/supabase-js": "^2.87.1"
+    "@supabase/supabase-js": "^2.87.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/node": "^20.19.26"
