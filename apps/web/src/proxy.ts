@@ -9,7 +9,7 @@ export const config = {
   matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 }
 
-const protectedRoutes = ["/dashboard"]
+const protectedRoutes = ["/dashboard", "/profile"]
 const publicRoutes = ["/", "/auth/login", "/auth/register"]
 
 const normalizePathname = (pathname: string, locales: readonly string[]) => {
