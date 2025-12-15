@@ -13,23 +13,46 @@ import {
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { TFormField } from "@/types/form-field"
+import { TUser } from "@/types/user"
 
-export const ChangeUserDetailsForm = () => {
+export const ChangeUserDetailsForm = ({
+  data,
+  onSubmit,
+  onCancel,
+}: {
+  data?: TUser | null
+  onSubmit: (data: Partial<TUser>) => void
+  onCancel: () => void
+}) => {
   const form = useForm()
 
   const fields: TFormField[] = [
-    { name: "firstName", label: "First Name", type: "text" },
-    { name: "lastName", label: "Last Name", type: "text" },
-    { name: "email", label: "Email", type: "email" },
+    {
+      name: "firstName",
+      label: "First Name",
+      type: "text",
+      value: data?.firstName,
+    },
+    {
+      name: "lastName",
+      label: "Last Name",
+      type: "text",
+      value: data?.lastName,
+    },
+    { name: "email", label: "Email", type: "email", value: data?.email },
   ]
 
   return (
     <Form {...form}>
-      <form>
+      <form
+        className="w-full flex flex-col gap-4"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         {fields.map((f) => (
           <FormField
             key={f.name}
             control={form.control}
+            defaultValue={f.value}
             name={f.name}
             render={({ field }) => (
               <FormItem {...field}>
@@ -47,7 +70,17 @@ export const ChangeUserDetailsForm = () => {
           />
         ))}
 
-        <Button className="cursor-pointer">Submit</Button>
+        <div className="flex w-full items-center justify-between">
+          <Button
+            className="cursor-pointer"
+            type="button"
+            onClick={onCancel}
+            variant="outline"
+          >
+            Cancel
+          </Button>
+          <Button className="cursor-pointer">Submit</Button>
+        </div>
       </form>
     </Form>
   )
