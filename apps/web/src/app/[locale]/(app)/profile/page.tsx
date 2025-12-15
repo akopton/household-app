@@ -1,11 +1,11 @@
-import { Card, CardContent, CardFooter, CardHeader } from "@components/ui/card"
-import { Grid } from "@components/ui/grid"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Grid } from "@/components/ui/grid"
 import {
   ChangePasswordForm,
   UserAvatar,
   UserDetailsCard,
-} from "@features/profile"
-import { getCurrentUser } from "@lib/auth"
+} from "@/features/profile"
+import { getCurrentUser } from "@/lib/auth"
 
 export default async function Profile() {
   const user = await getCurrentUser()

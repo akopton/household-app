@@ -6,8 +6,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@components/ui/sidebar"
-import { TUser } from "@app-types/user"
+} from "@/components/ui/sidebar"
+import { TUser } from "@/types/user"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +16,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { UserAvatar } from "@features/profile"
-import { UserDetails } from "@features/profile"
+import { UserAvatar } from "@/features/profile"
+import { UserDetails } from "@/features/profile"
 
 export const SidebarUser = ({ user }: { user?: TUser }) => {
   const router = useRouter()

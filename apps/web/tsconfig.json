@@ -20,12 +20,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@app-types/*": ["./src/types/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@features/*": ["./src/features/*"],
-      "@components/*": ["./src/components/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@hooks/*": ["./src/hooks/*"],
       "@household/shared": ["../../packages/shared/src/index.ts"],
       "@household/shared/*": ["../../packages/shared/src/*"],
       "@household/storage": ["../../packages/storage/src/index.ts"]

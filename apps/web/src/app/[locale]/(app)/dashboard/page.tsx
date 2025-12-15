@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader } from "@components/ui/card"
-import { Grid, GridElement } from "@components/ui/grid"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Grid, GridElement } from "@/components/ui/grid"
 
 export default async function DashboardPage() {
   const gridCards: {

@@ -9,11 +9,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@components/ui/form"
-import { Button } from "@components/ui/button"
-import { Input } from "@components/ui/input"
-import { TFormField } from "@app-types/form-field"
-import { TUser } from "@app-types/user"
+} from "@/components/ui/form"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { TFormField } from "@/types/form-field"
+import { TUser } from "@/types/user"
 
 export const ChangeUserDetailsForm = ({
   data,

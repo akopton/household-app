@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Button } from "../../../components/ui/button"
+import { Button } from "@/components/ui/button"
 import { FcGoogle } from "react-icons/fc"
 
 export const GoogleLoginButton = () => {

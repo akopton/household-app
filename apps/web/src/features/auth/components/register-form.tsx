@@ -7,9 +7,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@components/ui/card"
+} from "@/components/ui/card"
 import { useTranslations } from "next-intl"
-import { GoogleLoginButton } from "@features/auth"
+import { GoogleLoginButton } from "./google-login-button"
 import {
   Form,
   FormControl,
@@ -17,12 +17,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@components/ui/form"
-import { Input } from "@components/ui/input"
-import { Button } from "@components/ui/button"
-import { cn } from "@lib/utils"
-import { FieldDescription, FieldSeparator } from "@components/ui/field"
-import { useRegisterForm } from "@features/auth"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { FieldDescription, FieldSeparator } from "@/components/ui/field"
+import { useRegisterForm } from "@/features/auth"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useState } from "react"
 import Link from "next/link"

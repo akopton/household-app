@@ -1,4 +1,4 @@
-import { TUser } from "@app-types/user"
+import { TUser } from "@/types/user"
 
 export const UserDetails = ({ user }: { user?: TUser }) => {
   return (
