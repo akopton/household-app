@@ -2,7 +2,7 @@
   "appHeader": {
     "greeting": "Hello"
   },
-  "home": {
+  "homePage": {
     "title": "🏠 Household App",
     "subtitle": "Manage your household effortlessly in one place.",
     "login": {
@@ -31,7 +31,7 @@
     }
   },
 
-  "login": {
+  "loginPage": {
     "title": "Welcome back",
     "subtitle": "Log in to your account",
     "form": {
@@ -51,7 +51,7 @@
       "link": "Sign up"
     }
   },
-  "register": {
+  "registerPage": {
     "title": "Create an account",
     "subtitle": "Enter your email below to create an account",
     "form": {
@@ -72,6 +72,32 @@
     "description": {
       "text": "Already have an account?",
       "link": "Sign in"
+    }
+  },
+  "dashboardPage": {},
+  "tasks": {
+    "dashboardCard": {
+      "viewAll": "View all",
+      "title": "Tasks",
+      "overdue": "Overdue",
+      "coming": "Coming",
+      "list": {
+        "dropdown": {
+          "markDone": "Mark as done",
+          "edit": "Edit",
+          "delete": "Delete"
+        }
+      },
+      "editForm": {
+        "title": "Edit task",
+        "fields": {
+          "title": "Title",
+          "description": "Description",
+          "date": "Date"
+        },
+        "submit": "Save",
+        "cancel": "Cancel"
+      }
     }
   }
 }
