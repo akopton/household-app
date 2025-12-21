@@ -2,7 +2,7 @@
   "appHeader": {
     "greeting": "Dzień dobry"
   },
-  "home": {
+  "homePage": {
     "title": "🏠 Household App",
     "subtitle": "Zarządzaj domem w jednym miejscu.",
     "login": {
@@ -30,7 +30,7 @@
       ]
     }
   },
-  "login": {
+  "loginPage": {
     "title": "Zaloguj się",
     "subtitle": "Zaloguj się do swojego konta",
     "form": {
@@ -50,7 +50,7 @@
       "link": "Zarejestruj się"
     }
   },
-  "register": {
+  "registerPage": {
     "title": "Stwórz konto",
     "subtitle": "Podaj adres email poniżej żeby utworzyć konto",
     "form": {
@@ -71,6 +71,32 @@
     "description": {
       "text": "Masz już konto?",
       "link": "Zaloguj się"
+    }
+  },
+  "dashboardPage": {},
+  "tasks": {
+    "dashboardCard": {
+      "viewAll": "Wyświetl wszystkie",
+      "title": "Zadania",
+      "list": {
+        "overdue": "Przedawnione",
+        "coming": "Nadchodzące",
+        "dropdown": {
+          "markDone": "Oznacz jako wykonane",
+          "delete": "Usuń",
+          "edit": "Edytuj"
+        }
+      },
+      "editForm": {
+        "title": "Edytuj zadanie",
+        "fields": {
+          "title": "Tytuł",
+          "description": "Opis zadania",
+          "date": "Data"
+        },
+        "submit": "Zapisz",
+        "cancel": "Anuluj"
+      }
     }
   }
 }
