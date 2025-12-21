@@ -1,9 +1,11 @@
+"use client"
+
 import { registerFormSchema } from "@household/shared"
-import { useForm } from "react-hook-form"
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { signIn } from "next-auth/react"
+import { useForm } from "react-hook-form"
 
 const errorInvalidFormat = (
   path?: PropertyKey[],
@@ -52,7 +54,7 @@ const errorMap = (
 }
 
 export const useRegisterForm = () => {
-  const t = useTranslations("register")
+  const t = useTranslations("registerPage")
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema, {
       error: ({ code, path }) =>

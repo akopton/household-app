@@ -35,7 +35,7 @@ export const RegisterForm = ({ className, ...props }: RegisterFormProps) => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const t = useTranslations("register")
+  const t = useTranslations("registerPage")
   const { form, onSubmit } = useRegisterForm()
 
   return (

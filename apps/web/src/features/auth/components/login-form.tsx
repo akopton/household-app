@@ -28,7 +28,7 @@ export const LoginForm = ({
   className,
   ...props
 }: React.ComponentProps<"div">) => {
-  const t = useTranslations("login")
+  const t = useTranslations("loginPage")
   const { form, onSubmit } = useLoginForm()
 
   return (

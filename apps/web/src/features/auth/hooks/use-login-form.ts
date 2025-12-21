@@ -1,3 +1,5 @@
+"use client"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginFormSchema } from "@household/shared/schemas/login-form"
 import { signIn } from "next-auth/react"
@@ -8,7 +10,7 @@ import z from "zod"
 
 export const useLoginForm = () => {
   const router = useRouter()
-  const t = useTranslations("login")
+  const t = useTranslations("loginPage")
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema, {
