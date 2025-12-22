@@ -10,32 +10,15 @@ import {
 import { Input } from "@/components/ui/input"
 import { InvitedUsersInput } from "@/features/household/components/invited-users-input"
 import { InvitedUsersList } from "@/features/household/components/invited-users-list"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { createHouseholdFormSchema } from "@household/shared"
+import { useHouseholdCreateForm } from "@/features/household/hooks/use-household-create-form"
 import { useTranslations } from "next-intl"
-import { useForm } from "react-hook-form"
-import z from "zod"
+
+const translationPath =
+  "dashboardPage.onboardingModal.tabs.createHousehold.form"
 
 export const CreateForm = ({ id }: { id?: string }) => {
-  const t = useTranslations("dashboardPage.householdCreate")
-  const form = useForm<z.infer<typeof createHouseholdFormSchema>>({
-    defaultValues: { name: "", invitedUsers: [] },
-    resolver: zodResolver(createHouseholdFormSchema, {
-      error: (issue) => {
-        if (issue.code === "too_small") {
-          if (issue.path && issue.path[0] === "name") {
-            return t("error.nameRequired")
-          }
-        }
-
-        return t("error.root")
-      },
-    }),
-  })
-
-  const onSubmit = async (data: z.infer<typeof createHouseholdFormSchema>) => {
-    console.log(data)
-  }
+  const t = useTranslations(translationPath)
+  const { form, onSubmit } = useHouseholdCreateForm()
 
   return (
     <Form {...form}>
@@ -49,7 +32,7 @@ export const CreateForm = ({ id }: { id?: string }) => {
           name="name"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>{t("form.name")}</FormLabel>
+              <FormLabel>{t("name")}</FormLabel>
               <Input {...field} />
               <FormMessage />
             </FormItem>
@@ -60,9 +43,7 @@ export const CreateForm = ({ id }: { id?: string }) => {
           name="invitedUsers"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel htmlFor="invited-users">
-                {t("form.invitedUsers")}
-              </FormLabel>
+              <FormLabel htmlFor="invited-users">{t("invitedUsers")}</FormLabel>
 
               <InvitedUsersInput
                 id="invited-users"
@@ -78,8 +59,8 @@ export const CreateForm = ({ id }: { id?: string }) => {
               <FormMessage />
               <InvitedUsersList
                 data={field.value}
-                onDelete={(index) =>
-                  field.onChange(field.value?.filter((_, i) => i !== index))
+                onDelete={(email) =>
+                  field.onChange(field.value?.filter((el) => el !== email))
                 }
               />
             </FormItem>
