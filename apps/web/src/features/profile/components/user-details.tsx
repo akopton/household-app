@@ -1,6 +1,6 @@
-import { TUser } from "@/types/user"
+import { User } from "@/types/user"
 
-export const UserDetails = ({ user }: { user?: TUser }) => {
+export const UserDetails = ({ user }: { user?: User | null }) => {
   return (
     <div className="grid flex-1 text-left text-sm leading-tight">
       <span className="truncate font-medium">

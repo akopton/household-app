@@ -13,15 +13,15 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { TFormField } from "@/types/form-field"
-import { TUser } from "@/types/user"
+import { User } from "@/types/user"
 
 export const ChangeUserDetailsForm = ({
   data,
   onSubmit,
   onCancel,
 }: {
-  data?: TUser | null
-  onSubmit: (data: Partial<TUser>) => void
+  data?: User | null
+  onSubmit: (data: Partial<User>) => void
   onCancel: () => void
 }) => {
   const form = useForm()

@@ -1,17 +1,17 @@
 "use client"
 
-import { TUser } from "@/types/user"
 import { Edit } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { ChangeUserDetailsForm } from "./change-user-details-form"
+import { User } from "@/types/user"
 
-export const UserDetailsCard = ({ user }: { user?: TUser | null }) => {
+export const UserDetailsCard = ({ user }: { user?: User | null }) => {
   const [isEditing, setIsEditing] = useState(false)
 
   return isEditing ? (
     <ChangeUserDetailsForm
-      onSubmit={(data: Partial<TUser>) => {
+      onSubmit={(data: Partial<User>) => {
         console.log(data)
         setIsEditing(false)
       }}
@@ -30,7 +30,7 @@ const UserDetailsCardView = ({
   user,
   onClick,
 }: {
-  user?: TUser | null
+  user?: User | null
   onClick: () => void
 }) => {
   return (
