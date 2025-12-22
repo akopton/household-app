@@ -73,7 +73,47 @@
       "link": "Zaloguj się"
     }
   },
-  "dashboardPage": {},
+  "dashboardPage": {
+    "onboardingModal": {
+      "title": "Witaj! Tutaj możesz stworzyć pierwszy dom",
+      "subtitle": "Stwórz dom lub dołącz do istniejącego żeby zacząć",
+      "tabs": {
+        "createHousehold": {
+          "title": "Stwórz dom",
+          "description": "Stwórz dom i zaproś członków",
+          "form": {
+            "name": "Nazwa domu",
+            "invitedUsers": "Zaproś osoby",
+            "create": "Stwórz dom",
+            "add": "Dodaj",
+            "error": {
+              "root": "Wystąpił błąd podczas dodawania",
+              "nameRequired": "Nazwa domu jest wymagana",
+              "nameMinLength": "Nazwa domu musi zawierać co najmniej 3 znaki",
+              "userInvalidEmail": "Email jest nieprawidłowy",
+              "userEmailExists": "Email został już dodany"
+            }
+          }
+        },
+        "joinHousehold": {
+          "title": "Dołącz do domu",
+          "description": "Wprowadź kod zaproszenia żeby dołączyć do istniejącego domu",
+          "separator": "Lub wprowadź identyfikator zaproszenia",
+          "form": {
+            "code": "Kod zaproszenia",
+            "listJoin": "Dołącz",
+            "join": "Dołącz do domu",
+            "noInvites": "Aktualnie nie masz żadnych zaproszeń",
+            "error": {
+              "root": "Wystąpił błąd podczas dodawania",
+              "codeRequired": "Kod zaproszenia jest wymagany",
+              "codeInvalid": "Kod zaproszenia jest nieprawidłowy"
+            }
+          }
+        }
+      }
+    }
+  },
   "tasks": {
     "dashboardCard": {
       "viewAll": "Wyświetl wszystkie",

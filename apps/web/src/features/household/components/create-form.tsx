@@ -12,21 +12,23 @@ import { InvitedUsersInput } from "@/features/household/components/invited-users
 import { InvitedUsersList } from "@/features/household/components/invited-users-list"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { createHouseholdFormSchema } from "@household/shared"
+import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import z from "zod"
 
 export const CreateForm = ({ id }: { id?: string }) => {
+  const t = useTranslations("dashboardPage.householdCreate")
   const form = useForm<z.infer<typeof createHouseholdFormSchema>>({
     defaultValues: { name: "", invitedUsers: [] },
     resolver: zodResolver(createHouseholdFormSchema, {
       error: (issue) => {
         if (issue.code === "too_small") {
           if (issue.path && issue.path[0] === "name") {
-            return "name is required"
+            return t("error.nameRequired")
           }
         }
 
-        return "root error"
+        return t("error.root")
       },
     }),
   })
@@ -47,7 +49,7 @@ export const CreateForm = ({ id }: { id?: string }) => {
           name="name"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("form.name")}</FormLabel>
               <Input {...field} />
               <FormMessage />
             </FormItem>
@@ -58,13 +60,10 @@ export const CreateForm = ({ id }: { id?: string }) => {
           name="invitedUsers"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel htmlFor="invited-users">Invited users</FormLabel>
-              {/* <InvitedUsersList
-                {...field}
-                id="invited-users"
-                setError={form.setError}
-                clearError={() => form.clearErrors("invitedUsers")}
-              /> */}
+              <FormLabel htmlFor="invited-users">
+                {t("form.invitedUsers")}
+              </FormLabel>
+
               <InvitedUsersInput
                 id="invited-users"
                 name="invitedUsers"

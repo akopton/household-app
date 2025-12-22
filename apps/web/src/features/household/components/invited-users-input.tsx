@@ -9,6 +9,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 
 export const InvitedUsersInput = ({
   id,
@@ -27,6 +28,7 @@ export const InvitedUsersInput = ({
   onError: (error: string) => void
   clearError: () => void
 }) => {
+  const t = useTranslations("dashboardPage.householdCreate")
   const [email, setEmail] = useState("")
 
   const handleAdd = () => {
@@ -34,7 +36,7 @@ export const InvitedUsersInput = ({
 
     const result = z.email().safeParse(email)
     if (!result.success) {
-      onError("invalid email address")
+      onError(t("error.userInvalidEmail"))
       return
     }
 
@@ -67,7 +69,7 @@ export const InvitedUsersInput = ({
           type="button"
           onClick={handleAdd}
         >
-          Add
+          {t("form.add")}
         </InputGroupButton>
       </InputGroupAddon>
     </InputGroup>
