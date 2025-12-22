@@ -11,6 +11,19 @@ import {
 import { useState } from "react"
 import { useTranslations } from "next-intl"
 
+type InputProps = {
+  id?: string
+  name?: string
+  placeholder?: string
+  value?: string[]
+  onChange: (value: string[]) => void
+  onError: (error: string) => void
+  clearError: () => void
+}
+
+const translationPath =
+  "dashboardPage.onboardingModal.tabs.createHousehold.form"
+
 export const InvitedUsersInput = ({
   id,
   name,
@@ -19,16 +32,8 @@ export const InvitedUsersInput = ({
   onChange,
   onError,
   clearError,
-}: {
-  id?: string
-  name?: string
-  placeholder?: string
-  value?: string[]
-  onChange: (value: string[]) => void
-  onError: (error: string) => void
-  clearError: () => void
-}) => {
-  const t = useTranslations("dashboardPage.householdCreate")
+}: InputProps) => {
+  const t = useTranslations(translationPath)
   const [email, setEmail] = useState("")
 
   const handleAdd = () => {
@@ -37,6 +42,12 @@ export const InvitedUsersInput = ({
     const result = z.email().safeParse(email)
     if (!result.success) {
       onError(t("error.userInvalidEmail"))
+      return
+    }
+
+    const emailExists = value?.includes(email)
+    if (emailExists) {
+      onError(t("error.userEmailExists"))
       return
     }
 
@@ -69,7 +80,7 @@ export const InvitedUsersInput = ({
           type="button"
           onClick={handleAdd}
         >
-          {t("form.add")}
+          {t("add")}
         </InputGroupButton>
       </InputGroupAddon>
     </InputGroup>
