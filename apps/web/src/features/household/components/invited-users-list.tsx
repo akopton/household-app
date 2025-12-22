@@ -8,7 +8,7 @@ export const InvitedUsersList = ({
   onDelete,
 }: {
   data?: string[]
-  onDelete: (index: number) => void
+  onDelete: (email: string) => void
 }) => {
   return (
     <ul className="mt-2 space-y-2">
@@ -23,7 +23,7 @@ export const InvitedUsersList = ({
             variant="ghost"
             size="icon"
             className="h-8 w-8 text-muted-foreground hover:text-destructive"
-            onClick={() => onDelete(index)}
+            onClick={() => onDelete(email)}
           >
             <Trash2 className="h-4 w-4" />
           </Button>

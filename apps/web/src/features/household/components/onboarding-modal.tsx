@@ -1,28 +1,30 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CreateForm } from "@/features/household/components/create-form"
-import { InvitesList } from "@/features/household/components/invites-list"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
+import { HouseholdInvite } from "@/features/household/types"
+import { CreateHouseholdTab } from "@/features/household/components/create-household-tab"
+import { JoinHouseholdTab } from "@/features/household/components/join-household-tab"
+
+const translationPath = "dashboardPage.onboardingModal"
 
 export const OnboardingModal = ({
-  receivedInvites,
+  invites,
 }: {
-  receivedInvites: unknown[]
+  invites: HouseholdInvite[]
 }) => {
-  const t = useTranslations("dashboardPage.householdCreate")
-
+  const t = useTranslations(translationPath)
   const [open, setOpen] = useState(true)
+
   return (
     <Dialog
       open={open}
@@ -47,48 +49,19 @@ export const OnboardingModal = ({
             <TabsTrigger value="create">
               {t("tabs.createHousehold.title")}
             </TabsTrigger>
-            <TabsTrigger value="join">
+            <TabsTrigger
+              value="join"
+              className="flex items-center gap-3"
+            >
               {t("tabs.joinHousehold.title")}
-              {receivedInvites.length > 0
-                ? "(" + receivedInvites.length + ")"
-                : ""}
+              {invites && invites.length > 0 && (
+                <Badge variant="default">{invites.length}</Badge>
+              )}
             </TabsTrigger>
           </TabsList>
-
-          <TabsContent
-            value="create"
-            className="space-y-4 flex flex-col"
-          >
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                {t("tabs.createHousehold.description")}
-              </p>
-            </div>
-            <CreateForm id="household-create-form" />
-          </TabsContent>
-
-          <TabsContent
-            value="join"
-            className="space-y-4"
-          >
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                {t("tabs.joinHousehold.description")}
-              </p>
-            </div>
-            <InvitesList />
-          </TabsContent>
+          <CreateHouseholdTab />
+          <JoinHouseholdTab invites={invites} />
         </Tabs>
-
-        <DialogFooter>
-          <Button
-            type="submit"
-            form="household-create-form"
-            className="self-center"
-          >
-            {t("form.create")}
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

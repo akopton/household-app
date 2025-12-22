@@ -4,7 +4,20 @@ import { TasksDashboardCard } from "@/features/tasks"
 import { getCurrentUser } from "@/lib/auth"
 
 export default async function DashboardPage() {
-  const receivedInvites = [{ id: "123" }]
+  const invites = [
+    {
+      id: "123",
+      householdName: "Byko",
+      invitingUser: "Olek",
+      expirationDate: new Date("2025-12-29"),
+    },
+    {
+      id: "12345",
+      householdName: "Byko",
+      invitingUser: "Marcin",
+      expirationDate: new Date("2025-12-27"),
+    },
+  ]
   const user = await getCurrentUser()
 
   return (
@@ -27,7 +40,7 @@ export default async function DashboardPage() {
               </GridElement>
             </Grid>
           ) : (
-            <OnboardingModal receivedInvites={receivedInvites} />
+            <OnboardingModal invites={invites} />
           )}
         </div>
       </div>
