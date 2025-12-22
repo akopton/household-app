@@ -1,9 +1,27 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { createTaskSchema } from "@household/shared/schemas/task"
+import { getCurrentUser } from "@/lib/auth"
 
-export async function GET() {
+export async function GET(req: Request) {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
+  const { searchParams } = new URL(req.url)
+  const householdId = searchParams.get("householdId")
+
+  if (!householdId) {
+    return NextResponse.json(
+      { error: "Household ID is required" },
+      { status: 400 }
+    )
+  }
+
   const tasks = await prisma.task.findMany({
+    where: { householdId },
     orderBy: { createdAt: "desc" },
   })
 

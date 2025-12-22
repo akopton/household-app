@@ -34,7 +34,6 @@ export const authOptions: NextAuthOptions = {
             throw new Error("No user found with this email or username")
           }
 
-          // Verify password
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
             user.password
@@ -44,7 +43,13 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Invalid password")
           }
 
-          // Return user object (password excluded)
+          const defaultHousehold = await prisma.household.findFirst({
+            where: {
+              ownerId: user.id,
+              isDefault: true,
+            },
+          })
+
           return {
             id: user.id,
             email: user.email,
@@ -52,6 +57,7 @@ export const authOptions: NextAuthOptions = {
             lastName: user.lastName,
             username: user.username,
             avatarUrl: user.avatarUrl,
+            householdId: defaultHousehold?.id ?? null,
           }
         } catch (error) {
           console.error("Authentication error:", error)
@@ -77,6 +83,7 @@ export const authOptions: NextAuthOptions = {
         token.lastName = user.lastName
         token.username = user.username
         token.avatarUrl = user.avatarUrl
+        token.householdId = user.householdId
       }
       return token
     },
@@ -88,6 +95,7 @@ export const authOptions: NextAuthOptions = {
         session.user.lastName = token.lastName
         session.user.username = token.username
         session.user.avatarUrl = token.avatarUrl
+        session.user.householdId = token.householdId
       }
       return session
     },
