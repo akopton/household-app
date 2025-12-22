@@ -8,26 +8,30 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(cuid())
-  email      String      @unique
-  password   String
-  username   String?     @unique
-  firstName  String?
-  lastName   String?
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  avatarUrl  String?
-  households Household[]
+  id              String            @id @default(cuid())
+  email           String            @unique
+  password        String
+  username        String?           @unique
+  firstName       String?
+  lastName        String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  avatarUrl       String?
+  households      Household[]
+  sentInvites     HouseholdInvite[] @relation("SentInvites")
+  receivedInvites HouseholdInvite[] @relation("ReceivedInvites")
 }
 
 model Household {
-  id        String   @id @default(cuid())
-  name      String
-  ownerId   String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  tasks     Task[]
+  id               String            @id @default(cuid())
+  name             String
+  ownerId          String
+  owner            User              @relation(fields: [ownerId], references: [id])
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  tasks            Task[]
+  isDefault        Boolean           @default(false)
+  householdInvites HouseholdInvite[]
 }
 
 model Task {
@@ -38,4 +42,16 @@ model Task {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   dueDate     DateTime  @default(now())
+}
+
+model HouseholdInvite {
+  id             String    @id @default(cuid())
+  fromUserId     String
+  fromUser       User      @relation("SentInvites", fields: [fromUserId], references: [id])
+  invitedUserId  String
+  invitedUser    User      @relation("ReceivedInvites", fields: [invitedUserId], references: [id])
+  householdId    String
+  household      Household @relation(fields: [householdId], references: [id])
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime
 }

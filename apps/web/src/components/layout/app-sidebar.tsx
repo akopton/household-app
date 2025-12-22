@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/sidebar"
 import { SidebarUser } from "@/components/layout/sidebar-user"
 import { HouseholdSwitcher } from "@/components/layout/household-switcher"
-import { TUser } from "@/types/user"
 import Link from "next/link"
+import { User } from "@/types/user"
 
-export const AppSidebar = ({ user }: { user?: TUser }) => {
+export const AppSidebar = ({ user }: { user?: User }) => {
   const routes = [
     { label: "Home", href: "/" },
     { label: "Tasks", href: "/tasks" },

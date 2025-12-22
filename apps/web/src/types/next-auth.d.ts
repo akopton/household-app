@@ -9,6 +9,7 @@ declare module "next-auth" {
     lastName: string | null
     username: string | null
     avatarUrl: string | null
+    householdId: string | null
   }
 
   interface Session {
@@ -19,6 +20,7 @@ declare module "next-auth" {
       lastName: string | null
       username: string | null
       avatarUrl: string | null
+      householdId: string | null
     }
   }
 }
@@ -31,5 +33,6 @@ declare module "next-auth/jwt" {
     lastName: string | null
     username: string | null
     avatarUrl: string | null
+    householdId: string | null
   }
 }

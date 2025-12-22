@@ -7,7 +7,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { TUser } from "@/types/user"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,8 +20,9 @@ import { signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { UserAvatar } from "@/features/profile"
 import { UserDetails } from "@/features/profile"
+import { User } from "@/types/user"
 
-export const SidebarUser = ({ user }: { user?: TUser }) => {
+export const SidebarUser = ({ user }: { user?: User | null }) => {
   const router = useRouter()
   const { isMobile } = useSidebar()
   const alt = `${user?.firstName}-${user?.lastName}`
