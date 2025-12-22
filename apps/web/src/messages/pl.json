@@ -73,7 +73,34 @@
       "link": "Zaloguj się"
     }
   },
-  "dashboardPage": {},
+  "dashboardPage": {
+    "householdCreate": {
+      "title": "Witaj! Tutaj możesz stworzyć pierwszy dom",
+      "subtitle": "Stwórz dom lub dołącz do istniejącego żeby zacząć",
+      "form": {
+        "name": "Nazwa domu",
+        "invitedUsers": "Zaproś osoby",
+        "create": "Stwórz dom",
+        "add": "Dodaj"
+      },
+      "tabs": {
+        "createHousehold": {
+          "title": "Stwórz dom",
+          "description": "Stwórz dom i zaproś członków"
+        },
+        "joinHousehold": {
+          "title": "Dołącz do domu",
+          "description": "Wprowadź kod zaproszenia żeby dołączyć do istniejącego domu"
+        }
+      },
+      "error": {
+        "root": "Wystąpił błąd podczas dodawania",
+        "nameRequired": "Nazwa domu jest wymagana",
+        "nameMinLength": "Nazwa domu musi zawierać co najmniej 3 znaki",
+        "userInvalidEmail": "Email jest nieprawidłowy"
+      }
+    }
+  },
   "tasks": {
     "dashboardCard": {
       "viewAll": "Wyświetl wszystkie",

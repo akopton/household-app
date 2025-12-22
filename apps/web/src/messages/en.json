@@ -74,7 +74,35 @@
       "link": "Sign in"
     }
   },
-  "dashboardPage": {},
+  "dashboardPage": {
+    "householdCreate": {
+      "title": "Welcome! Let's set up your household",
+      "subtitle": "Create a new household or join an existing one to get started.",
+
+      "form": {
+        "name": "Household name",
+        "invitedUsers": "Invite users",
+        "create": "Create household",
+        "add": "Add"
+      },
+      "tabs": {
+        "createHousehold": {
+          "title": "Create household",
+          "description": "Create a new household and invite family members to join"
+        },
+        "joinHousehold": {
+          "title": "Join household",
+          "description": "Enter an invitation code to join an existing household"
+        }
+      },
+      "error": {
+        "root": "An error occurred while adding",
+        "nameRequired": "Household name is required",
+        "nameMinLength": "Household name must contain at least 3 characters",
+        "userInvalidEmail": "Email is invalid"
+      }
+    }
+  },
   "tasks": {
     "dashboardCard": {
       "viewAll": "View all",

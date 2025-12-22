@@ -12,6 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CreateForm } from "@/features/household/components/create-form"
 import { InvitesList } from "@/features/household/components/invites-list"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 export const OnboardingModal = ({
@@ -19,6 +20,8 @@ export const OnboardingModal = ({
 }: {
   receivedInvites: unknown[]
 }) => {
+  const t = useTranslations("dashboardPage.householdCreate")
+
   const [open, setOpen] = useState(true)
   return (
     <Dialog
@@ -32,10 +35,8 @@ export const OnboardingModal = ({
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
         <DialogHeader>
-          <DialogTitle>Welcome! Let&apos;s set up your household</DialogTitle>
-          <DialogDescription>
-            Create a new household or join an existing one to get started.
-          </DialogDescription>
+          <DialogTitle>{t("title")}</DialogTitle>
+          <DialogDescription>{t("subtitle")}</DialogDescription>
         </DialogHeader>
 
         <Tabs
@@ -43,9 +44,11 @@ export const OnboardingModal = ({
           className="w-full"
         >
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="create">Create Household</TabsTrigger>
+            <TabsTrigger value="create">
+              {t("tabs.createHousehold.title")}
+            </TabsTrigger>
             <TabsTrigger value="join">
-              Join Household{" "}
+              {t("tabs.joinHousehold.title")}
               {receivedInvites.length > 0
                 ? "(" + receivedInvites.length + ")"
                 : ""}
@@ -58,17 +61,10 @@ export const OnboardingModal = ({
           >
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                Create a new household and invite family members to join.
+                {t("tabs.createHousehold.description")}
               </p>
             </div>
             <CreateForm id="household-create-form" />
-            <Button
-              type="submit"
-              form="household-create-form"
-              className="self-center"
-            >
-              Create
-            </Button>
           </TabsContent>
 
           <TabsContent
@@ -77,15 +73,22 @@ export const OnboardingModal = ({
           >
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                Enter an invitation code to join an existing household.
+                {t("tabs.joinHousehold.description")}
               </p>
-              {/* Add your join household form here */}
             </div>
             <InvitesList />
           </TabsContent>
         </Tabs>
 
-        <DialogFooter>{/* Add action buttons here */}</DialogFooter>
+        <DialogFooter>
+          <Button
+            type="submit"
+            form="household-create-form"
+            className="self-center"
+          >
+            {t("form.create")}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )
